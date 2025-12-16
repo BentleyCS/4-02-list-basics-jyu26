@@ -11,6 +11,13 @@ def bookends(li: list):
     """
 
 
+    FirstNum = li[0]
+    SecondNum = li[len(li)-1]
+    li.pop(0)
+    li.pop(len(li)-1)
+    newlist= [FirstNum, SecondNum]
+
+    return(newlist)
 
 def inOrder(li : list):
     """
@@ -19,6 +26,11 @@ def inOrder(li : list):
     :return:
     """
 
+    for i in range(len(li)-1):
+        if li[i] > li[i+1]:
+            return False
+    else:
+        return True
 
 
 def find(li: list, target : int):
@@ -38,6 +50,13 @@ def find(li: list, target : int):
     :param target:
     :return:
     """
+    for i in range(len(li)):
+        print(li[i])
+        if li[i] == target:
+            return i
+
+    return -1
+find([1,3,7],3)
 
 
 def removeLowest(li):
@@ -48,6 +67,15 @@ def removeLowest(li):
     :param list:
     :return:
     """
+    n= 0
+    for i in range(len(li)):
+        if li[i]< li[n]:
+            n = i
+    li.pop(n)
+    return li
+
+
+
 
 
 def keepOrder(li: list, value):
@@ -59,7 +87,12 @@ def keepOrder(li: list, value):
     :param value:
     :return:
     """
-
+    for i in range(len(li)):
+        if value < li[i]:
+            li.insert(i,value)
+            return li
+    li.append(value)
+    return li
 
 def merge(l1:list, l2:list):
     """
@@ -70,4 +103,10 @@ def merge(l1:list, l2:list):
     :param l2:
     :return:
     """
-    
+    l3=[]
+    for x in l1:
+        l3.append(x)
+
+    for i in range (len(l2)):
+        l3 = keepOrder(l3,l2[i])
+    return l3
